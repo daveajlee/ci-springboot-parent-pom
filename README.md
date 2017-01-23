@@ -7,6 +7,6 @@ This POM can be used as a Parent POM for any Maven Project wishing to use Spring
 <parent>
 	<groupId>de.davelee</groupId>
 	<artifactId>ci-parent-pom</artifactId>
-	<version>0.1.0-BETA-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 </parent>
 ```
