@@ -5,7 +5,7 @@
     <!-- This Parent POM combines Continuous Integration and Spring Boot -->
 	<groupId>de.davelee</groupId>
 	<artifactId>ci-springboot-parent-pom</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Parent POM for Continuous Integration with Spring Boot</name>
@@ -14,7 +14,7 @@
 	<scm>
         <connection>scm:git:https://github.com/daveajlee/ci-springboot-parent-pom</connection>
         <url>https://github.com/daveajlee/ci-springboot-parent-pom</url>
-      <tag>HEAD</tag>
+      	<tag>HEAD</tag>
   	</scm>
   	
   	<!-- GitHub Packages -->
@@ -29,15 +29,19 @@
     <!-- Define variables to enable quick changes including java version and spring boot version -->
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-        <spring.boot.version>1.5.8.RELEASE</spring.boot.version>
+		<java.version>13</java.version>
+        <spring.boot.version>2.2.3.RELEASE</spring.boot.version>
+        <jacoco.version>0.8.5</jacoco.version>
+        <pmd.version>3.12.0</pmd.version>
+        <findbugs.version>3.0.5</findbugs.version>
+        <checkstyle.version>3.1.0</checkstyle.version>
     </properties>
 
     <!-- The Parent POM of this Parent POM is the Spring Boot Starter Parent in the latest release version -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.8.RELEASE</version>
+		<version>2.2.3.RELEASE</version>
 	</parent>
 
 	<dependencies>
@@ -52,7 +56,7 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-                <!-- Ensure that we always compile projects in Java 8 -->
+                <!-- Ensure that we always compile projects in Java 13 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -85,26 +89,26 @@
 			<build>
 				<plugins>
                     <!-- JUnit Tests with Surefire -->
-          <plugin>
+          			<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
 					</plugin>
-                    <!-- Measure Code Coverage with Cobertura -->
+                    <!-- Measure Code Coverage with JaCoCo -->
 					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>cobertura-maven-plugin</artifactId>
-						<configuration>
-							<formats>
-								<format>html</format>
-								<format>xml</format>
-							</formats>
-						</configuration>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco.version}</version>
 						<executions>
 							<execution>
-								<id>install</id>
-								<phase>install</phase>
 								<goals>
-									<goal>cobertura</goal>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
 								</goals>
 							</execution>
 						</executions>
@@ -127,6 +131,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-pmd-plugin</artifactId>
+						<version>${pmd.version}</version>
 						<executions>
 							<execution>
 								<id>install</id>
@@ -141,6 +146,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>findbugs-maven-plugin</artifactId>
+						<version>${findbugs.version}</version>
 						<configuration>
 							<xmlOutput>true</xmlOutput>
 						</configuration>
@@ -157,6 +163,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
+						<version>${checkstyle.version}</version>
 						<executions>
 							<execution>
 								<id>install</id>
