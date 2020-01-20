@@ -1,5 +1,5 @@
 node {
-   def mvnHome = tool 'Maven 3.3.9'
+   def mvnHome = tool 'Maven 3.5.3'
    stage('Git Checkout') {
       // Get code from contact-microservice GitHub repository
       git 'https://github.com/daveajlee/ci-springboot-parent-pom.git'
