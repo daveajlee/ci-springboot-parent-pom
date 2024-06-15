@@ -4,7 +4,7 @@
     <!-- This Parent POM combines Continuous Integration and Spring Boot -->
 	<groupId>de.davelee</groupId>
 	<artifactId>ci-springboot-parent-pom</artifactId>
-	<version>4.0.0-SNAPSHOT</version>
+	<version>4.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>Parent POM for Continuous Integration with Spring Boot</name>
@@ -13,7 +13,7 @@
 	<scm>
         <connection>scm:git:https://github.com/daveajlee/ci-springboot-parent-pom</connection>
         <url>https://github.com/daveajlee/ci-springboot-parent-pom</url>
-      	<tag>HEAD</tag>
+      	<tag>v4.0.0</tag>
   	</scm>
   	
   	<!-- GitHub Packages -->
